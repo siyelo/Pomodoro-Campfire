@@ -1,0 +1,1 @@
+do shell script "ruby /path/to/esca.rb start \"$pomodoroName\" $duration"
