@@ -14,7 +14,7 @@ formated_end_time = end_time.strftime("%H:%M")
 
 case ARGV[0]
 when "start"
-  speak = "'#{name}' - Ends in #{duration} minutes at #{formated_end_time}"
+  speak = "Started '#{name}' - Ends in #{duration} minutes at #{formated_end_time}"
 when "reset"
   speak = ""
 when "stop"
