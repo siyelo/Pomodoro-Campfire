@@ -1,24 +1,28 @@
 require 'rubygems'
+require 'bundler/setup'
+
+require 'json'
 require 'tinder'
 
-campfire = Tinder::Campfire.new 'ROOM_NAME', :token => 'TOKEN'
-# or you can still use username/password and Tinder will look up your token
-# campfire = Tinder::Campfire.new 'mysubdomain', :username => 'user', :password => 'pass'
+action, name, duration, *therest = ARGV
+account = name.split(/(-|,|_)/).first
 
-room = campfire.find_or_create_room_by_name 'Billetto Development'
+# skip status update if no campfire account is "tagged"
+data = JSON.parse(IO.read("campfire.json"))[account] or exit
 
-name = ARGV[1]
-duration = ARGV[2]
+campfire = Tinder::Campfire.new data['domain'], :token => data['token']
+room = campfire.find_room_by_name data['room']
+
 end_time = Time.now + (60*duration.to_i)
 formated_end_time = end_time.strftime("%H:%M")
 
-case ARGV[0]
+case action
 when "start"
   speak = "Started '#{name}' - Ends in #{duration} minutes at #{formated_end_time}"
 when "reset"
-  speak = ""
+  speak = "Reset '#{name}'"
 when "stop"
-  speak = "" 
+  speak = "Stopped '#{name}'"
 end
 
 room.speak "Pomodoro: #{speak}"
