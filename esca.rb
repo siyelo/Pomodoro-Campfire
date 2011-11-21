@@ -6,9 +6,10 @@ require 'tinder'
 
 action, name, duration, *therest = ARGV
 account = name.split(/(-|,|_)/).first
+json_file = File.join(File.dirname(__FILE__), "campfire.json")
 
 # skip status update if no campfire account is "tagged"
-data = JSON.parse(IO.read("campfire.json"))[account] or exit
+data = JSON.parse(IO.read(json_file))[account] or exit
 
 campfire = Tinder::Campfire.new data['domain'], :token => data['token']
 room = campfire.find_room_by_name data['room']
