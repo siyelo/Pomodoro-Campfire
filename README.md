@@ -16,8 +16,10 @@ First, clone down the repo and install the gem dependencies ([tinder][tinder] an
 
 ```sh
 git clone git://gist.github.com/1383177.git ~/Dropbox/esca
-(cd ~/Dropbox/esca && bundle package)
+sudo gem install json tinder --no-ri --no-rdoc
 ```
+
+On the Mac, the system installed Ruby will be used (hence the sudo).
 
 Now modify `campfire.json` with your campfire account (or accounts). Finally,
 open **Preferences** in *Pomodoro*, go to the **Scripts** tab, and paste the
