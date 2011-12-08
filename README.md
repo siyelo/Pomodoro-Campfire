@@ -9,6 +9,18 @@ account. In the example file there is a campfire account with tag called
 campfire account. If no campfire account exists with the leading tag, nothing
 will be broadcast.
 
+E.g.
+
+```json
+{
+  "wco": {
+    "token": "token_api_key_here",
+    "domain": "widgetco",
+    "room": "Dev room"
+  }
+}
+```
+
 # Installation
 
 First, clone down the repo and install the gem dependencies ([tinder][tinder] and
